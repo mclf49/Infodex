@@ -6,5 +6,11 @@ public class Entry {
 	private String entryName;
 	private String entryInfo;
 	
+	public Entry(String entryName) {
+		this.entryName=entryName;
+	}
 	
+	public String getEntryName() {
+		return this.entryName;
+	}
 }
