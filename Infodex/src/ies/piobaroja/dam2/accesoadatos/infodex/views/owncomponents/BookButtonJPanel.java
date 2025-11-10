@@ -5,27 +5,23 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class BookButtonJPanel extends JPanel{
+	private static final long serialVersionUID = -2215544257617420634L;
 	
-	private int bookButtonJPanelIndex;
+	
+	
 	private JButton mainButton;
 	private JButton dots;
 	
-	public BookButtonJPanel(JButton mainButton, JButton dots, int bookButtonJPanelIndex) {
+	public BookButtonJPanel(JButton mainButton) {
 		this.mainButton = mainButton;
-		this.dots= dots;
-		this.bookButtonJPanelIndex=bookButtonJPanelIndex;
+		this.dots= new JButton("...");
+
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		add(mainButton);
 		add(dots);
 	}
 	
-	public void setBookButtonJPanelIndex(int index) {
-		this.bookButtonJPanelIndex= index;
-	}
-	public int getBookButtonJPanelIndex() {
-		return bookButtonJPanelIndex;
-	}
 	
 	public JButton getMainButton() {
 		return mainButton;

@@ -9,12 +9,13 @@ import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadBooksController;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Entry;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
+import ies.piobaroja.dam2.accesoadatos.infodex.views.InfodexPanel;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.ReadBooksView;
 
 public class Main {
 	public static void main(String[] args) {
 		
-		Infodex infodex = new Infodex();
+		Infodex infodex1 = new Infodex();
 		Book book1 = new Book("Pokemon");
 		Book book2 = new Book("Objetos informáticos");
 		Book book3 = new Book("Alumnos del Pio Baorja");
@@ -22,23 +23,23 @@ public class Main {
 		Entry e2 = new Entry("Bulbasaur");
 		Entry e3 = new Entry("Squirtle");
 
-		infodex.createBook(book1);
-		infodex.createBook(book2);
-		infodex.createBook(book3);
+		infodex1.createBook(book1);
+		infodex1.createBook(book2);
+		infodex1.createBook(book3);
 		
-		infodex.addEntryToBook(book1, e1);
-		infodex.addEntryToBook(book1, e2);
-		infodex.addEntryToBook(book1, e3);
+		infodex1.addEntryToBook(book1, e1);
+		infodex1.addEntryToBook(book1, e2);
+		infodex1.addEntryToBook(book1, e3);
 		
-		System.out.println(infodex.readEntriesOfBook(book2));
+		System.out.println(infodex1.readEntriesOfBook(book2));
 
-		InfodexFrame mainFrame = new InfodexFrame();
+		InfodexFrame infodexFrame = new InfodexFrame();
 		
 		
+		InfodexPanel infodexPanel = new InfodexPanel(infodex1);
+		infodexFrame.add(infodexPanel);
+		infodexFrame.setVisible(true);
 		
-		mainFrame.add(new ReadBooksView());
-		mainFrame.setVisible(true);
-		
-		
+		infodexPanel.showReadBooksView();
 	}
 }
