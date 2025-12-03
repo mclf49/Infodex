@@ -31,7 +31,7 @@ public void readyButtons(int i) {
 		//infodex.readBooks().get(i);
 		Book book = infodex.readBooks().get(i);
 		for(int x = 0; x<book.size(); x++) {
-			JButton jButton = (new JButton(book.get(i).getEntryName()));
+			JButton jButton = (new JButton(book.get(x).getEntryName()));
 			jButton.addActionListener(new ActionListener() {
 				
 				
@@ -62,7 +62,7 @@ public void readyButtons(int i) {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				infodexPanel.showCreateNewBookView();
+				//infodexPanel.showCreateNewEntryView();
 			}
 		});
 	}
