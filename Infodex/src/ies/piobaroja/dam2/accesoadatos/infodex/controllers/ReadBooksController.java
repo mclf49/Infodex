@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.views.owncomponents.TwoButtonsJPanel;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
@@ -50,12 +51,13 @@ public class ReadBooksController {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
+					//TODO Auto-generated method stub
+					twoButtonsJPanel.popupMenu.show(twoButtonsJPanel.getDotsButton(), 0, 20);
 				}
 			});
 			
 			readBooksView.drawButton(twoButtonsJPanel);
+			
 		}
 	}
 }

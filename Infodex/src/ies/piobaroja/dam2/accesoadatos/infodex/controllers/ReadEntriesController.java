@@ -44,14 +44,14 @@ public void readyButtons(int i) {
 			});
 			
 			TwoButtonsJPanel twoButtonsJPanel = new TwoButtonsJPanel(jButton);
-			twoButtonsJPanel.getDotsButton().addActionListener(new ActionListener() {
+			//twoButtonsJPanel.getDotsButton().addActionListener(new ActionListener() {
 				
-				@Override
-				public void actionPerformed(ActionEvent e) {
+				//@Override
+				//public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					
-				}
-			});
+				//}
+			//});
 			readEntriesView.drawButton(twoButtonsJPanel);
 			
 			
