@@ -33,7 +33,7 @@ public class Infodex {
 		entries.add(entry);
 	}
 	
-	public ArrayList<Entry> readAllEntries() {
+	public ArrayList<Entry> readEntries() {
 		return entries;
 	}
 	

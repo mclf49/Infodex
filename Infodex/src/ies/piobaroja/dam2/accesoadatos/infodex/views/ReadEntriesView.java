@@ -7,29 +7,27 @@ import javax.swing.JPanel;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.views.owncomponents.TwoButtonsJPanel;
 
-public class ReadBooksView extends JPanel{
-	private static final long serialVersionUID = 7722008343160444314L;
-	
-	
-	private JButton newBookButton = new JButton("New Book");
+public class ReadEntriesView extends JPanel{
+
+	private static final long serialVersionUID = 9130832811771153650L;
+
+	private JButton newEntryButton = new JButton ("New Entry");
 	private FlowLayout flowLayout;
-	
-	public ReadBooksView() {
+
+	public ReadEntriesView() {
 		flowLayout = new FlowLayout(FlowLayout.LEFT, 25, 20);
 		setLayout(flowLayout); 
-		add(newBookButton);
+		add(newEntryButton);
 	}
-
+	
 	public void drawButton(TwoButtonsJPanel twoButtonsJPanel) {
-			this.add(twoButtonsJPanel);
-	}
-	
-	public JButton getNewBookButton() {
-		return newBookButton;
-	}
-	
-	public void addNewBookBtn() {
-		add(newBookButton);
-	}
+		this.add(twoButtonsJPanel);
 }
-
+	public JButton getNewEntryButton() {
+		return newEntryButton;
+	}
+	public void addNewEntryButton() {
+		add(newEntryButton);
+	}
+	
+}

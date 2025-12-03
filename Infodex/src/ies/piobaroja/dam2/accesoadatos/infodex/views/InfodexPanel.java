@@ -4,7 +4,9 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import ies.piobaroja.dam2.accesoadatos.infodex.controllers.CreateNewBookController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadBooksController;
+import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadEntriesController;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 
 public class InfodexPanel extends JPanel{
@@ -14,25 +16,50 @@ public class InfodexPanel extends JPanel{
 
 	private CardLayout cardLayout = new CardLayout();
 	
-	//First view where all books(lists) are shown
+	/*Declaration of views and its controllers*/
 	private ReadBooksView readBooksView;
 	private ReadBooksController readBooksController;
+	
+	private CreateNewBookView createNewBookView;
+	private CreateNewBookController createNewBookController;
+	
+	
+	private ReadEntriesView readEntriesView;
+	private ReadEntriesController readEntriesController;
+	
 	
 	
 	public InfodexPanel(Infodex infodex) {
 		this.infodex=infodex;
 		setLayout(cardLayout);
 		
-		//instances and adds views and controllers. Should follow same order as attributes, if I don't mess it up
+		/*Initiates views, adds them to Should follow same order as attributes, if I don't mess it up*/
 		
 		readBooksView = new ReadBooksView();
 		add(readBooksView, "readBooksView");
-		readBooksController = new ReadBooksController(readBooksView,infodex);
+		readBooksController = new ReadBooksController(this,readBooksView,infodex);
+		
+		createNewBookView = new CreateNewBookView();
+		add(createNewBookView, "createNewBookView");
+		createNewBookController = new CreateNewBookController(this, createNewBookView, infodex);
+		
+		readEntriesView = new ReadEntriesView();
+		add(readEntriesView, "readEntriesView");
+		readEntriesController = new ReadEntriesController(this, readEntriesView, infodex);
+		
 	}
 	
 	public void showReadBooksView() {
+		readBooksController.readyButtons();
 		cardLayout.show(this, "readBooksView");
 	}
 	
+	public void showCreateNewBookView() {
+		cardLayout.show(this, "createNewBookView");
+	}
 	
+	public void showReadEntriesView(int i) {
+		readEntriesController.readyButtons(i);
+		cardLayout.show(this, "readEntriesView");
+	}
 }

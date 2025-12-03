@@ -4,7 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class BookButtonJPanel extends JPanel{
+public class TwoButtonsJPanel extends JPanel{
 	private static final long serialVersionUID = -2215544257617420634L;
 	
 	
@@ -12,7 +12,7 @@ public class BookButtonJPanel extends JPanel{
 	private JButton mainButton;
 	private JButton dots;
 	
-	public BookButtonJPanel(JButton mainButton) {
+	public TwoButtonsJPanel(JButton mainButton) {
 		this.mainButton = mainButton;
 		this.dots= new JButton("...");
 

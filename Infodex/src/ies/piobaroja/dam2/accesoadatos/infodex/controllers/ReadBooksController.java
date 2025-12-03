@@ -8,49 +8,54 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 
-import ies.piobaroja.dam2.accesoadatos.infodex.views.owncomponents.BookButtonJPanel;
+import ies.piobaroja.dam2.accesoadatos.infodex.views.owncomponents.TwoButtonsJPanel;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
+import ies.piobaroja.dam2.accesoadatos.infodex.views.InfodexPanel;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.ReadBooksView;
 
 public class ReadBooksController {
+	private InfodexPanel infodexPanel;
 	private ReadBooksView readBooksView;
 	private Infodex infodex;
 	
-	public ReadBooksController(ReadBooksView readBooksView,Infodex infodex) {
+	public ReadBooksController(InfodexPanel infodexPanel, ReadBooksView readBooksView,Infodex infodex) {
+		this.infodexPanel = infodexPanel;
 		this.readBooksView=readBooksView;
 		this.infodex = infodex;
 		readyButtons();
 	}
 
 	
-	private void readyButtons() {
+	public void readyButtons() {
 		
-		for(int i = 0; i<infodex.readBooks().size(); i++) {
-			JButton jButton = (new JButton(infodex.readBooks().get(i).getTitle()));
+		readBooksView.removeAll();
+		readBooksView.addNewBookBtn();
+		
+		for(Book book: infodex.readBooks()) {
+			
+			JButton jButton = (new JButton(infodex.readBooks().get(infodex.readBooks().indexOf(book)).getTitle()));
 			jButton.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(jButton.getText());
-					System.out.println(infodex.readBooks().size());
+					System.out.print("Pulsado botón"+ jButton.getText());
+					System.out.println(" con tamaño "+infodex.readBooks().size());
+					infodexPanel.showReadEntriesView(infodex.readBooks().indexOf(book));
+				}
+			});
+			
+			TwoButtonsJPanel twoButtonsJPanel = new TwoButtonsJPanel(jButton);
+			twoButtonsJPanel.getDotsButton().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
 					
 				}
 			});
 			
-			BookButtonJPanel bookButtonJPanel = new BookButtonJPanel(jButton);
-			readBooksView.drawButton(bookButtonJPanel);
-			
-			
+			readBooksView.drawButton(twoButtonsJPanel);
 		}
-		
-		
-		readBooksView.getNewBookButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				infodex.createBook(new Book("Nuevo libro"));
-			}
-		});
 	}
 }
