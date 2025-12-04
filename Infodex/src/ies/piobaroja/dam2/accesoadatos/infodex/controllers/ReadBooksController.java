@@ -52,7 +52,7 @@ public class ReadBooksController {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					//TODO Auto-generated method stub
-					twoButtonsJPanel.popupMenu.show(twoButtonsJPanel.getDotsButton(), 0, 20);
+					twoButtonsJPanel.getPopupMenu().show(twoButtonsJPanel.getDotsButton(), 0, 20);
 				}
 			});
 			

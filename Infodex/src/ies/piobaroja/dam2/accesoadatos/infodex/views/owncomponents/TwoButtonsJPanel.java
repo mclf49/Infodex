@@ -16,12 +16,15 @@ public class TwoButtonsJPanel extends JPanel{
 	
 	private JButton mainButton;
 	private JButton dots;
-	public JPopupMenu popupMenu;
+	private JPopupMenu popupMenu;
+	private JMenuItem editOption;
+	private JMenuItem deleteOption;
+	
 	
 	public TwoButtonsJPanel(JButton mainButton) {
 		this.mainButton = mainButton;
 		this.dots= new JButton("...");
-		//this.menu= new JPopupMenu();
+	
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		add(mainButton);
@@ -29,11 +32,11 @@ public class TwoButtonsJPanel extends JPanel{
 		
 		popupMenu = new JPopupMenu();
 		
-		JMenuItem mntmOption = new JMenuItem("Option 1");
-		popupMenu.add(mntmOption);
+		editOption = new JMenuItem("Edit");
+		popupMenu.add(editOption);
 		
-		JMenuItem mntmOption_1 = new JMenuItem("Option 2");
-		popupMenu.add(mntmOption_1);
+		deleteOption = new JMenuItem("Delete");
+		popupMenu.add(deleteOption);
 		
 	}
 	
@@ -48,6 +51,10 @@ public class TwoButtonsJPanel extends JPanel{
 	
 	public JButton getDotsButton() {
 		return this.dots;
+	}
+	
+	public JPopupMenu getPopupMenu() {
+		return popupMenu;
 	}
 	
 }

@@ -12,22 +12,31 @@ public class ReadEntriesView extends JPanel{
 	private static final long serialVersionUID = 9130832811771153650L;
 
 	private JButton newEntryButton = new JButton ("New Entry");
+	private JButton returnButton = new JButton ("Go back");
 	private FlowLayout flowLayout;
 
 	public ReadEntriesView() {
 		flowLayout = new FlowLayout(FlowLayout.LEFT, 25, 20);
 		setLayout(flowLayout); 
 		add(newEntryButton);
+		
 	}
 	
 	public void drawButton(TwoButtonsJPanel twoButtonsJPanel) {
 		this.add(twoButtonsJPanel);
 }
+	
 	public JButton getNewEntryButton() {
 		return newEntryButton;
 	}
-	public void addNewEntryButton() {
+	
+	public JButton getReturnButton() {
+		return returnButton;
+	}
+	
+	public void addDefaultButtons() {
 		add(newEntryButton);
+		add(returnButton);
 	}
 	
 }
