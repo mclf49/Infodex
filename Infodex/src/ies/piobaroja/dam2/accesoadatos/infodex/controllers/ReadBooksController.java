@@ -24,7 +24,6 @@ public class ReadBooksController {
 		this.infodexPanel = infodexPanel;
 		this.readBooksView=readBooksView;
 		this.infodex = infodex;
-		readyButtons();
 	}
 
 	
@@ -33,16 +32,30 @@ public class ReadBooksController {
 		readBooksView.removeAll();
 		readBooksView.addNewBookBtn();
 		
-		for(Book book: infodex.readBooks()) {
+		readBooksView.getNewBookButton().addActionListener(new ActionListener() {
 			
-			JButton jButton = (new JButton(infodex.readBooks().get(infodex.readBooks().indexOf(book)).getTitle()));
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				infodexPanel.showCreateNewBookView();				
+			}
+		});
+		
+		ArrayList<Book> books = infodex.readBooks();
+	
+		for(int i=0;i<books.size();i++) {
+			final int bookIndex= i;
+			final Book book = infodex.getBook(bookIndex);
+			System.out.println(bookIndex);
+			final JButton jButton = (new JButton(book.getTitle()+"("+bookIndex+")"));
 			jButton.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.print("Pulsado botón"+ jButton.getText());
-					System.out.println(" con tamaño "+infodex.readBooks().size());
-					infodexPanel.showReadEntriesView(infodex.readBooks().indexOf(book));
+					System.out.println(" con tamaño "+book.size());
+
+					System.out.println("Estoy enviando el índice "+ bookIndex);
+					infodexPanel.showReadEntriesView(bookIndex);
 				}
 			});
 			

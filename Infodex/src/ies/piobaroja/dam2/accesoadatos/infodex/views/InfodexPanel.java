@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.CreateNewBookController;
+import ies.piobaroja.dam2.accesoadatos.infodex.controllers.CreateNewEntryController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadBooksController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadEntriesController;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
@@ -12,20 +13,22 @@ import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 public class InfodexPanel extends JPanel{
 	private static final long serialVersionUID = -9050345153066713422L;
 	
-	Infodex infodex;
+	private final Infodex infodex;
 
-	private CardLayout cardLayout = new CardLayout();
+	private final CardLayout cardLayout = new CardLayout();
 	
 	/*Declaration of views and its controllers*/
-	private ReadBooksView readBooksView;
-	private ReadBooksController readBooksController;
+	private final ReadBooksView readBooksView;
+	private final ReadBooksController readBooksController;
 	
-	private CreateNewBookView createNewBookView;
-	private CreateNewBookController createNewBookController;
+	private final CreateNewBookView createNewBookView;
+	private final CreateNewBookController createNewBookController;
 	
+	private final ReadEntriesView readEntriesView;
+	private final ReadEntriesController readEntriesController;
 	
-	private ReadEntriesView readEntriesView;
-	private ReadEntriesController readEntriesController;
+	private final CreateNewEntryView createNewEntryView;
+	private final CreateNewEntryController createNewEntryController;
 	
 	
 	
@@ -47,6 +50,10 @@ public class InfodexPanel extends JPanel{
 		add(readEntriesView, "readEntriesView");
 		readEntriesController = new ReadEntriesController(this, readEntriesView, infodex);
 		
+		createNewEntryView = new CreateNewEntryView();
+		add(createNewEntryView, "createNewEntryView");
+		createNewEntryController = new CreateNewEntryController(this, infodex, createNewEntryView);
+		
 	}
 	
 	public void showReadBooksView() {
@@ -58,8 +65,14 @@ public class InfodexPanel extends JPanel{
 		cardLayout.show(this, "createNewBookView");
 	}
 	
-	public void showReadEntriesView(int i) {
-		readEntriesController.readyButtons(i);
+	public void showReadEntriesView(int bookIndex) {
+		System.out.println("He recibido el índice" + bookIndex);
+		readEntriesController.readyButtons(bookIndex);
 		cardLayout.show(this, "readEntriesView");
+	}
+	
+	public void showCreateNewEntryView(int bookIndex) {
+		createNewEntryController.setBook(bookIndex);
+		cardLayout.show(this,"createNewEntryView");
 	}
 }

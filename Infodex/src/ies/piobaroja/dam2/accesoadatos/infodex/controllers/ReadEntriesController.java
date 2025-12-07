@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
+import ies.piobaroja.dam2.accesoadatos.infodex.model.Entry;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.InfodexPanel;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.ReadEntriesView;
@@ -15,6 +16,7 @@ public class ReadEntriesController {
 	private InfodexPanel infodexPanel;
 	private ReadEntriesView readEntriesView;
 	private Infodex infodex;
+	private int bookIndex;
 	
 	public ReadEntriesController(InfodexPanel infodexPanel, ReadEntriesView readEntriesView,Infodex infodex) {
 		this.infodexPanel = infodexPanel;
@@ -25,8 +27,8 @@ public class ReadEntriesController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//infodexPanel.showNewEntryView();
-				
+				System.out.println("Envío en readEntriesController" + bookIndex);
+				infodexPanel.showCreateNewEntryView(bookIndex);
 			}
 		});
 		
@@ -40,23 +42,27 @@ public class ReadEntriesController {
 		});
 	}
 	
-public void readyButtons(int i) {
-		
-		
+public void readyButtons(int bookIndex) {
+		System.out.println("Recibo en readEntriesController" + bookIndex);
+		this.bookIndex=bookIndex;
 		readEntriesView.removeAll();
 		readEntriesView.addDefaultButtons();
 		
-		
-		Book book = infodex.readBooks().get(i);
-		for(int x = 0; x<book.size(); x++) {
-			JButton jButton = (new JButton(book.get(x).getEntryName()));
+		Book book = infodex.getBook(bookIndex);
+		for(Entry entry: book) {
+			
+			
+			
+			String buttonName = entry.getEntryName();
+			JButton jButton = (new JButton(buttonName));
 			jButton.addActionListener(new ActionListener() {
 				
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(jButton.getText());
-					System.out.println(book.size());
+					System.out.println(entry.getEntryName());
+					System.out.println(entry.getEntryDescription());
+					System.out.printf("Of book %s \n",book.getTitle());
 					
 				}
 			});
@@ -72,16 +78,8 @@ public void readyButtons(int i) {
 			});
 			readEntriesView.drawButton(twoButtonsJPanel);
 			
-			
 		}
 		
 		
-		readEntriesView.getNewEntryButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//infodexPanel.showCreateNewEntryView();
-			}
-		});
 	}
 }

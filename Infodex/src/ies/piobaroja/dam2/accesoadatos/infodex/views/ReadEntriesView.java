@@ -35,8 +35,8 @@ public class ReadEntriesView extends JPanel{
 	}
 	
 	public void addDefaultButtons() {
-		add(newEntryButton);
 		add(returnButton);
+		add(newEntryButton);
 	}
 	
 }

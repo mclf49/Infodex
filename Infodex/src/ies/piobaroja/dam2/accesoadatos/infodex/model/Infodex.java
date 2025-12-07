@@ -17,6 +17,14 @@ public class Infodex {
 		books.add(book);
 	}
 	
+	public Book getBook(int bookIndex) {
+		return books.get(bookIndex);
+	}
+	
+	public int indexOfBook(Book book) {
+		return books.indexOf(book);
+	}
+	
 	public ArrayList<Book> readBooks(){
 		return books;
 	}

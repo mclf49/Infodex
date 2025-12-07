@@ -19,9 +19,9 @@ public class Main {
 		Book book1 = new Book("Pokemon");
 		Book book2 = new Book("Objetos informáticos");
 		Book book3 = new Book("Alumnos del Pio Baorja");
-		Entry e1 = new Entry("Charmander");
-		Entry e2 = new Entry("Bulbasaur");
-		Entry e3 = new Entry("Squirtle");
+		Entry e1 = new Entry("Charmander", "Pokemon calentito");
+		Entry e2 = new Entry("Bulbasaur", "Pokemon que da alergia");
+		Entry e3 = new Entry("Squirtle", "Pokemon húmedo");
 
 		infodex1.createBook(book1);
 		infodex1.createBook(book2);
@@ -41,5 +41,7 @@ public class Main {
 		infodexFrame.setVisible(true);
 		
 		infodexPanel.showReadBooksView();
+		infodexPanel.revalidate();
+		infodexPanel.repaint();
 	}
 }
