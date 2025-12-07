@@ -31,8 +31,9 @@ public class Infodex {
 		books.set(books.indexOf(oldBook), newBook);
 	}
 	
-	public void removeBook(Book book) {
-		books.remove(book);
+	public void removeBook(int bookIndex) {
+		System.out.println("Eliminado libro "+bookIndex);
+		books.remove(bookIndex);
 	}
 	
 	public void updateEntry(Book book, Entry oldEntry, Entry newEntry) {

@@ -46,10 +46,11 @@ public class EditEntryController {
 				}
 				
 				book.set(book.indexOf(entry), new Entry(editEntryView.getNewNameTf().getText(), editEntryView.getNewDescriptionTf().getText()));
+				
+				infodexPanel.showReadEntriesView(infodex.indexOfBook(book));
 				editEntryView.getNewNameTf().setText("");
 				editEntryView.getNewDescriptionTf().setText("");
 				
-				infodexPanel.showReadEntriesView(infodex.indexOfBook(book));
 			}
 		});
 	}

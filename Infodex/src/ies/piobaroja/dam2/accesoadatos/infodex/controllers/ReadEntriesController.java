@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Entry;
@@ -61,7 +62,7 @@ public void readyButtons(int bookIndex) {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println(entry.getEntryName());
 					System.out.println(entry.getEntryDescription());
-					
+					JOptionPane.showMessageDialog(infodexPanel, entry.getEntryDescription(),entry.getEntryName(),JOptionPane.PLAIN_MESSAGE);
 				}
 			});
 			
@@ -84,6 +85,23 @@ public void readyButtons(int bookIndex) {
 					
 				}
 			});
+			
+			twoButtonsJPanel.getDeleteOption().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int option = JOptionPane.showConfirmDialog(infodexPanel, String.format("¿Seguro que quieres eliminar el libro %s?", book.getTitle()), "Confirm delete", JOptionPane.YES_NO_OPTION);
+					if(option==JOptionPane.YES_OPTION) {
+						
+						book.remove(entryIndex);
+						readEntriesView.revalidate();
+						readEntriesView.repaint();
+						readyButtons(bookIndex);
+	
+					}
+				}
+			});
+			
 			readEntriesView.drawButton(twoButtonsJPanel);
 			
 		}

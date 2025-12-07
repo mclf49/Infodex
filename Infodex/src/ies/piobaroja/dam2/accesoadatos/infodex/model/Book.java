@@ -19,6 +19,10 @@ public class Book extends ArrayList<Entry>{
 		this.title=title;
 	}
 	
+	public void removeEntry(int EntryIndex) {
+		remove(EntryIndex);
+	}
+	
 	@Override
 	public String toString() {
 		String s="";
@@ -27,7 +31,7 @@ public class Book extends ArrayList<Entry>{
 			s+=entry.getEntryName();
 			s+="]";
 		}
-		if(s.isEmpty()) {return "[Empty]";}
-		else {return s;}
+		if(s.isEmpty()) {return title+" [Empty]";}
+		else {return title+s;}
 	}
 }
