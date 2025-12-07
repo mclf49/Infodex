@@ -43,10 +43,12 @@ public class ReadBooksController {
 		ArrayList<Book> books = infodex.readBooks();
 	
 		for(int i=0;i<books.size();i++) {
+			
+			//Estas deben ser constantes locales porque por lo visto así funcionan Java y sus clases anónimas dentro de un bucle. 
 			final int bookIndex= i;
 			final Book book = infodex.getBook(bookIndex);
-			System.out.println(bookIndex);
-			final JButton jButton = (new JButton(book.getTitle()+"("+bookIndex+")"));
+			
+			final JButton jButton = (new JButton(book.getTitle()));
 			jButton.addActionListener(new ActionListener() {
 				
 				@Override
@@ -54,7 +56,6 @@ public class ReadBooksController {
 					System.out.print("Pulsado botón"+ jButton.getText());
 					System.out.println(" con tamaño "+book.size());
 
-					System.out.println("Estoy enviando el índice "+ bookIndex);
 					infodexPanel.showReadEntriesView(bookIndex);
 				}
 			});
@@ -66,6 +67,15 @@ public class ReadBooksController {
 				public void actionPerformed(ActionEvent e) {
 					//TODO Auto-generated method stub
 					twoButtonsJPanel.getPopupMenu().show(twoButtonsJPanel.getDotsButton(), 0, 20);
+					
+					twoButtonsJPanel.getEditOption().addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							infodexPanel.showEditBookView(bookIndex);
+							
+						}
+					});
 				}
 			});
 			

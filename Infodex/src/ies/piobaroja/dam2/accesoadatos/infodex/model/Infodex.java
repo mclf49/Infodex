@@ -6,8 +6,6 @@ import java.util.HashMap;
 public class Infodex {
 	
 	private ArrayList<Book> books;
-	private ArrayList<Entry> entries;
-	
 	
 	public Infodex() {
 		books = new ArrayList<Book>();
@@ -37,21 +35,10 @@ public class Infodex {
 		books.remove(book);
 	}
 	
-	public void createEntry(Entry entry) {
-		entries.add(entry);
+	public void updateEntry(Book book, Entry oldEntry, Entry newEntry) {
+		book.set(book.indexOf(oldEntry), newEntry);
 	}
 	
-	public ArrayList<Entry> readEntries() {
-		return entries;
-	}
-	
-	public void updateEntry(Entry oldEntry, Entry newEntry) {
-		entries.set(entries.indexOf(oldEntry), newEntry);
-	}
-	
-	public void removeEntry(Entry entry) {
-		entries.remove(entry);
-	}
 	
 	public void addEntryToBook(Book book, Entry entry) {
 		book.add(entry);

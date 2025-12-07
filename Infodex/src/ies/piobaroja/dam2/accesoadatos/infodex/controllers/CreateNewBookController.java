@@ -30,6 +30,7 @@ public class CreateNewBookController {
 				}
 				infodex.createBook(new Book(createNewBookView.getBookNameTF().getText()));
 				infodexPanel.showReadBooksView();
+				createNewBookView.getBookNameTF().setText("");
 			}
 		});
 	}

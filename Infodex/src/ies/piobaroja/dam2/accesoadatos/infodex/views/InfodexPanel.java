@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.CreateNewBookController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.CreateNewEntryController;
+import ies.piobaroja.dam2.accesoadatos.infodex.controllers.EditBookController;
+import ies.piobaroja.dam2.accesoadatos.infodex.controllers.EditEntryController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadBooksController;
 import ies.piobaroja.dam2.accesoadatos.infodex.controllers.ReadEntriesController;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
@@ -13,22 +15,28 @@ import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 public class InfodexPanel extends JPanel{
 	private static final long serialVersionUID = -9050345153066713422L;
 	
-	private final Infodex infodex;
+	private Infodex infodex;
 
-	private final CardLayout cardLayout = new CardLayout();
+	private CardLayout cardLayout = new CardLayout();
 	
 	/*Declaration of views and its controllers*/
-	private final ReadBooksView readBooksView;
-	private final ReadBooksController readBooksController;
+	private ReadBooksView readBooksView;
+	private ReadBooksController readBooksController;
 	
-	private final CreateNewBookView createNewBookView;
-	private final CreateNewBookController createNewBookController;
+	private CreateNewBookView createNewBookView;
+	private CreateNewBookController createNewBookController;
 	
-	private final ReadEntriesView readEntriesView;
-	private final ReadEntriesController readEntriesController;
+	private EditBookView editBookView;
+	private EditBookController editBookController;
 	
-	private final CreateNewEntryView createNewEntryView;
-	private final CreateNewEntryController createNewEntryController;
+	private ReadEntriesView readEntriesView;
+	private ReadEntriesController readEntriesController;
+	
+	private CreateNewEntryView createNewEntryView;
+	private CreateNewEntryController createNewEntryController;
+	
+	private EditEntryView editEntryView;
+	private EditEntryController editEntryController;
 	
 	
 	
@@ -46,6 +54,10 @@ public class InfodexPanel extends JPanel{
 		add(createNewBookView, "createNewBookView");
 		createNewBookController = new CreateNewBookController(this, createNewBookView, infodex);
 		
+		editBookView = new EditBookView();
+		add(editBookView, "editBookView");
+		editBookController = new EditBookController(this, editBookView, infodex);
+		
 		readEntriesView = new ReadEntriesView();
 		add(readEntriesView, "readEntriesView");
 		readEntriesController = new ReadEntriesController(this, readEntriesView, infodex);
@@ -53,6 +65,10 @@ public class InfodexPanel extends JPanel{
 		createNewEntryView = new CreateNewEntryView();
 		add(createNewEntryView, "createNewEntryView");
 		createNewEntryController = new CreateNewEntryController(this, infodex, createNewEntryView);
+		
+		editEntryView= new EditEntryView();
+		add(editEntryView, "editEntryView");
+		editEntryController = new EditEntryController(this, infodex, editEntryView);
 		
 	}
 	
@@ -65,8 +81,12 @@ public class InfodexPanel extends JPanel{
 		cardLayout.show(this, "createNewBookView");
 	}
 	
+	public void showEditBookView(int bookIndex) {
+		editBookController.setBook(bookIndex);
+		cardLayout.show(this, "editBookView");
+		
+	}
 	public void showReadEntriesView(int bookIndex) {
-		System.out.println("He recibido el índice" + bookIndex);
 		readEntriesController.readyButtons(bookIndex);
 		cardLayout.show(this, "readEntriesView");
 	}
@@ -74,5 +94,10 @@ public class InfodexPanel extends JPanel{
 	public void showCreateNewEntryView(int bookIndex) {
 		createNewEntryController.setBook(bookIndex);
 		cardLayout.show(this,"createNewEntryView");
+	}
+
+	public void showEditEntryView(int bookIndex, int entryIndex) {
+		editEntryController.setEntry(bookIndex, entryIndex);
+		cardLayout.show(this, "editEntryView");
 	}
 }

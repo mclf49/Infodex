@@ -38,7 +38,10 @@ public class CreateNewEntryController {
 				String entryDescription = createNewEntryView.getDescriptionTF().getText();
 				System.out.println("Entrada añadida al libro " + book.getTitle());
 				book.add(new Entry(entryName, entryDescription));
+				JOptionPane.showMessageDialog(infodexPanel, String.format("Creado nuevo item %s con descripción %s",entryName,entryDescription));;
 				infodexPanel.showReadEntriesView(infodex.indexOfBook(book));
+				createNewEntryView.getEntryNameTF().setText("");
+				createNewEntryView.getDescriptionTF().setText("");
 			}
 		});
 	}

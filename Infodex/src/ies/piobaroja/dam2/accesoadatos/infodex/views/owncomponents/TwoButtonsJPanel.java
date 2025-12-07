@@ -56,5 +56,10 @@ public class TwoButtonsJPanel extends JPanel{
 	public JPopupMenu getPopupMenu() {
 		return popupMenu;
 	}
-	
+	public JMenuItem getEditOption() {
+		return editOption;
+	}
+	public JMenuItem getDeleteOption() {
+		return deleteOption;
+	}
 }

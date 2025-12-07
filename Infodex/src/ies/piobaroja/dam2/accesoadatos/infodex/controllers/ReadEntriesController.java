@@ -43,7 +43,6 @@ public class ReadEntriesController {
 	}
 	
 public void readyButtons(int bookIndex) {
-		System.out.println("Recibo en readEntriesController" + bookIndex);
 		this.bookIndex=bookIndex;
 		readEntriesView.removeAll();
 		readEntriesView.addDefaultButtons();
@@ -51,7 +50,7 @@ public void readyButtons(int bookIndex) {
 		Book book = infodex.getBook(bookIndex);
 		for(Entry entry: book) {
 			
-			
+			final int entryIndex = book.indexOf(entry);
 			
 			String buttonName = entry.getEntryName();
 			JButton jButton = (new JButton(buttonName));
@@ -62,17 +61,26 @@ public void readyButtons(int bookIndex) {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println(entry.getEntryName());
 					System.out.println(entry.getEntryDescription());
-					System.out.printf("Of book %s \n",book.getTitle());
 					
 				}
 			});
 			
 			TwoButtonsJPanel twoButtonsJPanel = new TwoButtonsJPanel(jButton);
+			
 			twoButtonsJPanel.getDotsButton().addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					twoButtonsJPanel.getPopupMenu().show(twoButtonsJPanel.getDotsButton(), 0, 20);
+					
+				}
+			});
+			
+			twoButtonsJPanel.getEditOption().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					infodexPanel.showEditEntryView(bookIndex, entryIndex);
 					
 				}
 			});
