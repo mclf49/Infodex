@@ -5,20 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import ies.piobaroja.dam2.accesoadatos.infodex.Main;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
-import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.EditBookView;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.InfodexPanel;
 
 public class EditBookController {
 	private EditBookView editBookView;
-	private Infodex infodex;
 	private InfodexPanel infodexPanel;
 	private Book oldBook;
 	
-	public EditBookController(InfodexPanel infodexPanel, EditBookView editBookView, Infodex infodex) {
+	public EditBookController(InfodexPanel infodexPanel, EditBookView editBookView) {
 		this.editBookView= editBookView;
-		this.infodex= infodex;
 		this.infodexPanel= infodexPanel;
 		
 		
@@ -34,18 +32,22 @@ public class EditBookController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+			
 				if(editBookView.getNewNameTf().getText().isBlank()) {
 					JOptionPane.showMessageDialog(infodexPanel, String.format("Por favor introduce el nuevo nombre del libro %s", oldBook.getTitle()));
 				}
+				//DAO
 				oldBook.setTitle(editBookView.getNewNameTf().getText());
+				Book book = oldBook;
+				Main.bookDAO.updateBook(book);
+				//Vista
 				infodexPanel.showReadBooksView();
 				editBookView.getNewNameTf().setText("");
 			}
 		});
 	}
-	public void setBook(int bookIndex) {
-		this.oldBook = infodex.getBook(bookIndex);
+	public void setBook(int bookID) {
+		this.oldBook = Main.bookDAO.readBook(bookID);
 		editBookView.getNewNameTf().setText(oldBook.getTitle());
 		editBookView.getNewNameTf().grabFocus();
 	}

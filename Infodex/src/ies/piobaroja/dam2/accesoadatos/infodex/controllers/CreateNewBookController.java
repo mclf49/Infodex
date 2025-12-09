@@ -5,20 +5,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import ies.piobaroja.dam2.accesoadatos.infodex.Main;
 import ies.piobaroja.dam2.accesoadatos.infodex.model.Book;
-import ies.piobaroja.dam2.accesoadatos.infodex.model.Infodex;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.CreateNewBookView;
 import ies.piobaroja.dam2.accesoadatos.infodex.views.InfodexPanel;
 
 public class CreateNewBookController {
 	private InfodexPanel infodexPanel;
 	private CreateNewBookView createNewBookView;
-	private Infodex infodex;
+
 	
-	public CreateNewBookController(InfodexPanel infodexPanel, CreateNewBookView createNewBookView, Infodex infodex) {
+	public CreateNewBookController(InfodexPanel infodexPanel, CreateNewBookView createNewBookView) {
 		this.createNewBookView = createNewBookView;
 		this.infodexPanel = infodexPanel;
-		this.infodex=infodex;
 		
 		createNewBookView.getSubmitBtn().addActionListener(new ActionListener() {
 			
@@ -28,7 +27,9 @@ public class CreateNewBookController {
 					JOptionPane.showMessageDialog(infodexPanel, "Por favor introduce un nombre");
 					return;
 				}
-				infodex.createBook(new Book(createNewBookView.getBookNameTF().getText()));
+				//Llamada al modelo
+					Main.bookDAO.createBook(new Book(createNewBookView.getBookNameTF().getText()));
+				//Actualiza la vista
 				infodexPanel.showReadBooksView();
 				createNewBookView.getBookNameTF().setText("");
 			}

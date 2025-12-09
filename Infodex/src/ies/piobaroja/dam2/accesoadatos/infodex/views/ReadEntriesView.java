@@ -18,11 +18,9 @@ public class ReadEntriesView extends JPanel{
 	public ReadEntriesView() {
 		flowLayout = new FlowLayout(FlowLayout.LEFT, 25, 20);
 		setLayout(flowLayout); 
-		add(newEntryButton);
-		
 	}
 	
-	public void drawButton(TwoButtonsJPanel twoButtonsJPanel) {
+	public void drawItemBtn(TwoButtonsJPanel twoButtonsJPanel) {
 		this.add(twoButtonsJPanel);
 }
 	
@@ -34,9 +32,11 @@ public class ReadEntriesView extends JPanel{
 		return returnButton;
 	}
 	
-	public void addDefaultButtons() {
-		add(returnButton);
+	public void addNewEntryBtn() {
 		add(newEntryButton);
 	}
 	
+	public void addReturnButton() {
+		add(returnButton);
+	}
 }

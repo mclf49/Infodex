@@ -20,7 +20,7 @@ public class ReadBooksView extends JPanel{
 		add(newBookButton);
 	}
 
-	public void drawButton(TwoButtonsJPanel twoButtonsJPanel) {
+	public void drawItemBtn(TwoButtonsJPanel twoButtonsJPanel) {
 			this.add(twoButtonsJPanel);
 	}
 	
